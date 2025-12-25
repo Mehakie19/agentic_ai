@@ -1,0 +1,77 @@
+<!--
+  index.html - Colorful Scientific Calculator
+  -------------------------------------------------
+  This file defines the HTML5 structure for a web‑based scientific calculator.
+  Sections:
+    * <head> – meta tags, title, stylesheet, and script inclusion.
+    * <body> – a single root <div id="calculator" class="calculator"> that holds the UI.
+    * Display – a read‑only <input> showing the current expression/result.
+    * button-grid – primary calculator buttons arranged in a grid (digits, operators, clear, etc.).
+    * function-grid – optional scientific function buttons placed below the main grid.
+  Each button includes:
+    - class="button" plus a role‑specific modifier (operator, digit, function, clear, equals).
+    - data-action attribute to identify its purpose for JavaScript event handling.
+    - data-value attribute containing the character or function name.
+  The markup is fully indented, UTF‑8 encoded, and conforms to W3C validation.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Colorful Scientific Calculator</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <div id="calculator" class="calculator">
+    <!-- Display screen -->
+    <input type="text" id="display" class="display" readonly aria-label="Calculator display">
+
+    <!-- Primary button grid (5 rows) -->
+    <div class="button-grid">
+      <!-- Row 1: Clear, toggle sign, percentage, divide -->
+      <button class="button clear" data-action="clear" data-value="C">C</button>
+      <button class="button function" data-action="function" data-value="±">±</button>
+      <button class="button function" data-action="function" data-value="%">%</button>
+      <button class="button operator" data-action="operator" data-value="/">/</button>
+
+      <!-- Row 2: 7 8 9 multiply -->
+      <button class="button digit" data-action="digit" data-value="7">7</button>
+      <button class="button digit" data-action="digit" data-value="8">8</button>
+      <button class="button digit" data-action="digit" data-value="9">9</button>
+      <button class="button operator" data-action="operator" data-value="*">*</button>
+
+      <!-- Row 3: 4 5 6 subtract -->
+      <button class="button digit" data-action="digit" data-value="4">4</button>
+      <button class="button digit" data-action="digit" data-value="5">5</button>
+      <button class="button digit" data-action="digit" data-value="6">6</button>
+      <button class="button operator" data-action="operator" data-value="-">-</button>
+
+      <!-- Row 4: 1 2 3 add -->
+      <button class="button digit" data-action="digit" data-value="1">1</button>
+      <button class="button digit" data-action="digit" data-value="2">2</button>
+      <button class="button digit" data-action="digit" data-value="3">3</button>
+      <button class="button operator" data-action="operator" data-value="+">+</button>
+
+      <!-- Row 5: 0 (span two columns), decimal, equals -->
+      <button class="button digit zero" data-action="digit" data-value="0" style="grid-column: span 2;">0</button>
+      <button class="button digit" data-action="digit" data-value=".">.</button>
+      <button class="button equals" data-action="equals" data-value="=">=</button>
+    </div>
+
+    <!-- Scientific function grid (optional) -->
+    <div class="function-grid">
+      <button class="button function" data-action="function" data-value="sin">sin</button>
+      <button class="button function" data-action="function" data-value="cos">cos</button>
+      <button class="button function" data-action="function" data-value="tan">tan</button>
+      <button class="button function" data-action="function" data-value="log">log</button>
+      <button class="button function" data-action="function" data-value="ln">ln</button>
+      <button class="button function" data-action="function" data-value="√">√</button>
+      <button class="button function" data-action="function" data-value="^">^</button>
+      <button class="button function" data-action="function" data-value="π">π</button>
+      <button class="button function" data-action="function" data-value="e">e</button>
+    </div>
+  </div>
+</body>
+</html>

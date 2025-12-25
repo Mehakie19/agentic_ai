@@ -1,0 +1,169 @@
+/*
+  styles.css – Visual styling for the Colorful Scientific Calculator
+
+  This stylesheet defines a vibrant, dark‑theme UI using CSS custom properties.
+  Sections:
+    • Color palette – variables for backgrounds, buttons, text, and fonts.
+    • Global layout – body styling to center the calculator.
+    • Calculator container – size, shadow, rounded corners.
+    • Display – read‑only input that shows the current expression/result.
+    • Button grid – CSS Grid layout for the primary calculator buttons.
+    • Buttons – base style and modifier classes (operator, function, equals, clear, digit).
+    • Special button rules – spanning for the "0" and equals buttons.
+    • Responsive adjustments – smaller screens (<400px) get reduced font sizes and padding.
+*/
+
+/* ------------------------------------------------------------
+   Color palette (CSS custom properties)
+   ------------------------------------------------------------ */
+:root {
+  /* Primary background – dark bluish‑gray */
+  --bg-primary: #1e1e2f;
+  /* Secondary background – slightly lighter for panels */
+  --bg-secondary: #28293d;
+  /* Generic button background */
+  --btn-bg: #4b4c6a;
+  /* Hover state for generic buttons */
+  --btn-bg-hover: #5c5d7e;
+  /* Operator buttons (e.g., +, -, *, /) */
+  --btn-primary: #ff6f61;
+  /* Scientific function buttons (sin, cos, etc.) */
+  --btn-function: #61a0ff;
+  /* Equals button */
+  --btn-equals: #61ff8a;
+  /* Clear button */
+  --btn-clear: #ff4c4c;
+  /* General text colour */
+  --text-color: #f0f0f0;
+  /* Font family for the whole app */
+  --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* ------------------------------------------------------------
+   Global layout
+   ------------------------------------------------------------ */
+body {
+  background: var(--bg-primary);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  font-family: var(--font-family);
+}
+
+/* ------------------------------------------------------------
+   Calculator container
+   ------------------------------------------------------------ */
+.calculator {
+  background: var(--bg-secondary);
+  border-radius: 1rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 360px;
+  box-sizing: border-box;
+}
+
+/* ------------------------------------------------------------
+   Display (read‑only input)
+   ------------------------------------------------------------ */
+.display {
+  width: 100%;
+  font-size: 2.5rem;
+  text-align: right;
+  background: var(--bg-primary);
+  color: var(--text-color);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.8rem 1rem;
+  box-sizing: border-box;
+  margin-bottom: 1rem;
+  /* Prevent selection and editing */
+  user-select: none;
+  pointer-events: none;
+}
+
+/* ------------------------------------------------------------
+   Primary button grid
+   ------------------------------------------------------------ */
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+/* ------------------------------------------------------------
+   Base button style
+   ------------------------------------------------------------ */
+.button {
+  background: var(--btn-bg);
+  color: var(--text-color);
+  border: none;
+  border-radius: 0.4rem;
+  font-size: 1.4rem;
+  padding: 0.8rem;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-sizing: border-box;
+}
+
+.button:hover {
+  background: var(--btn-bg-hover);
+}
+
+/* ------------------------------------------------------------
+   Modifier classes for specific button types
+   ------------------------------------------------------------ */
+.button.operator {
+  background: var(--btn-primary);
+}
+
+.button.function {
+  background: var(--btn-function);
+}
+
+.button.equals {
+  background: var(--btn-equals);
+  grid-column: span 2;
+}
+
+.button.clear {
+  background: var(--btn-clear);
+}
+
+/* Digit buttons keep the base colour – no extra rule needed */
+
+/* ------------------------------------------------------------
+   Special spanning rules
+   ------------------------------------------------------------ */
+/* The "0" button should occupy two columns */
+.button[data-value="0"] {
+  grid-column: span 2;
+}
+
+/* ------------------------------------------------------------
+   Scientific function grid (optional styling)
+   ------------------------------------------------------------ */
+.function-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+/* ------------------------------------------------------------
+   Responsive adjustments for very small screens
+   ------------------------------------------------------------ */
+@media (max-width: 400px) {
+  .display {
+    font-size: 2rem;
+    padding: 0.6rem 0.8rem;
+  }
+
+  .button {
+    font-size: 1.2rem;
+    padding: 0.6rem;
+  }
+}
